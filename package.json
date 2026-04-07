@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Seawis/fullstack-javascript-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.4"
+    "@hexlet/chat-server": "^2.0.4",
+    "plugin-react": "^0.0.1-security",
+    "vite": "^8.0.5"
   }
 }
