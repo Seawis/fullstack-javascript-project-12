@@ -29,9 +29,9 @@ export default defineConfig({
     'process': JSON.stringify({
       env: {
         NODE_ENV: process.env.NODE_ENV || 'development',
-        API_URL: process.env.API_URL || 'http://localhost:3000',
+        API_URL: process.env.API_URL || 'http://localhost:6001',
       },
     }),
   },
-  
+
 })
