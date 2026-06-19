@@ -19,4 +19,19 @@ export default defineConfig({
       },
     },
   },
+
+  define: {
+    // Mock process.env.NODE_ENV (common use case)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    // Mock specific variables (e.g., API_URL)
+    'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:3000'),
+    // For the full process object (use sparingly—adds bundle size)
+    'process': JSON.stringify({
+      env: {
+        NODE_ENV: process.env.NODE_ENV || 'development',
+        API_URL: process.env.API_URL || 'http://localhost:3000',
+      },
+    }),
+  },
+  
 })

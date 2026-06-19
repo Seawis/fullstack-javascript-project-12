@@ -8,12 +8,13 @@ import App from './App.jsx'
 import store from './slices/index';
 import './i18n';
 import socketIo from './fetch/socket.js';
+import Main from './main.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       {socketIo()}
-      <App />
+      <Main />
     </Provider>
   </StrictMode>,
 )

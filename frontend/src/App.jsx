@@ -19,6 +19,7 @@ import LoginPage from './components/Login.jsx'
 import Error404Page from './components/Error404.jsx'
 import MainPage from './components/Main.jsx'
 import SignupPage from './components/Signup.jsx'
+import TestRollbar from './components/TestRollbar.jsx';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -94,6 +95,7 @@ const App = () => (
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
             <Nav className="me-auto"></Nav>
+            <TestRollbar />
             <div className="d-flex px-3">
               <AuthButton />
             </div>
