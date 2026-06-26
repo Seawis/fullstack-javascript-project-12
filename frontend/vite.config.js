@@ -9,11 +9,11 @@ export default defineConfig({
     proxy: {
       // Проксируем запросы к API
       '/api': {
-        target: 'http://localhost:6001',
+        target: 'http://0.0.0.0:6001',
       },
       // Проксируем WebSocket соединения
       '/socket.io': {
-        target: 'ws://localhost:6001',
+        target: 'ws://0.0.0.0:6001',
         ws: true,
         rewriteWsOrigin: true,
       },
