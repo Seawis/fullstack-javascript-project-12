@@ -7,7 +7,7 @@ install:
 
 build:
 	rm -rf frontend/dist
-	make -C frontend build
+	npm run build
 
 start-frontend:
 	make -C frontend start
@@ -19,6 +19,9 @@ start:
 	make start-backend
 
 dev:
+	make start-backend & make start-frontend
+
+develop:
 	make start-backend & make start-frontend
 
 .PHONY: install build start dev
