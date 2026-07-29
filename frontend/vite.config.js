@@ -9,11 +9,11 @@ export default defineConfig({
     proxy: {
       // Проксируем запросы к API
       '/api': {
-        target: 'http://0.0.0.0:6001',
+        target: 'http://localhost:5001',
       },
       // Проксируем WebSocket соединения
       '/socket.io': {
-        target: 'ws://0.0.0.0:6001',
+        target: 'ws://localhost:5001',
         ws: true,
         rewriteWsOrigin: true,
       },
@@ -24,12 +24,12 @@ export default defineConfig({
     // Mock process.env.NODE_ENV (common use case)
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
     // Mock specific variables (e.g., API_URL)
-    'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:3000'),
+    'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:5001'),
     // For the full process object (use sparingly—adds bundle size)
     'process': JSON.stringify({
       env: {
         NODE_ENV: process.env.NODE_ENV || 'development',
-        API_URL: process.env.API_URL || 'http://localhost:6001',
+        API_URL: process.env.API_URL || 'http://localhost:5001',
       },
     }),
   },

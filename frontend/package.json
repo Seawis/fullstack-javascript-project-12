@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:6001",
+  "proxy": "http://localhost:5001",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "npx start-server -p 6001 -s ./dist"
+    "start": "npx start-server -s ./dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",

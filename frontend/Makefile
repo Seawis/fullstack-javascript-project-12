@@ -9,3 +9,6 @@ start:
 
 lint:
 	npx eslint --fix
+
+dev:
+	npm run dev
