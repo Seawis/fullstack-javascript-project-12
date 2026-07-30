@@ -5,7 +5,7 @@ export default {
       en: 'English',
     },
 
-    register: 'Зарегистрироваться',
+    register: 'Регистрация',
     logout: 'Выйти',
     channels: 'Каналы',
     createChannel: 'Создать канал',

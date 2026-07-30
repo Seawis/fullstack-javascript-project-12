@@ -131,7 +131,7 @@ const SignupPage = () => {
                           role="status"
                           aria-hidden="true"
                         />
-                      : t('register')}
+                      : t('singup.singup')}
                   </Button>
                 </fieldset>
                 {/*<p className="text-center text-danger my-2">{error}</p>*/}
