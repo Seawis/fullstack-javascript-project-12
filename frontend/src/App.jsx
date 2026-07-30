@@ -91,7 +91,7 @@ const App = () => (
     <Router>
       <Navbar bg="light" variant="light" expand="lg" className="shadow-sm">
         <Container>
-          <Navbar.Brand as={Link} to="/">Slack Chat</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Hexlet Chat</Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
             <Nav className="me-auto"></Nav>
