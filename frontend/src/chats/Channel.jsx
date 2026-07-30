@@ -47,11 +47,11 @@ const RenderChannel = ({ channel }) => {
             <Hash size={18} />
             {!removable && <Lock size={16} /> }
           </span>
-          <span className={`text-truncate ${isActiveChannel ? 'fw-normal' : 'fw-medium text-dark'}`}>
+          {/* <span className={`text-truncate ${isActiveChannel ? 'fw-normal' : 'fw-medium text-dark'}`}>
             {name}
-          </span>
+          </span> */}
         </div>
-
+        {name}
         {messagesCount[id] && (
           <Badge 
             pill 
