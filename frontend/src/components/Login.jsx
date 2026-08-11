@@ -22,7 +22,7 @@ const LoginPage = () => {
   useEffect(() => {
     inputRef.current.focus()
   }, [])
-
+/*
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -56,6 +56,54 @@ const LoginPage = () => {
       }
     },
   })
+*/
+
+const formik = useFormik({
+  initialValues: {
+    username: '',
+    password: '',
+  },
+  onSubmit: async (values) => {
+    setAuthFailed(false);
+    formik.setSubmitting(true);
+
+    try {
+      const res = await axios.post(routes.loginPath(), values);
+
+      // Дополнительная проверка данных
+      if (!res.data || typeof res.data.userId === 'undefined') {
+        throw new Error('Некорректный ответ сервера');
+      }
+
+      localStorage.setItem('userId', JSON.stringify(res.data.userId));
+      auth.logIn();
+      navigate(redirectPath, { replace: true });
+    } catch (err) {
+      if (err.isAxiosError && err.response) {
+        const { status, statusText } = err.response;
+
+        if (status === 401) {
+          setAuthFailed(true);
+          toast(t('error.login.unauthorized')); // понятное сообщение
+          if (inputRef.current) inputRef.current.focus();
+          return;
+        }
+
+        if (status >= 500) {
+          setAuthFailed(true);
+          toast(t('error.login.server_error'));
+          if (inputRef.current) inputRef.current.focus();
+          return;
+        }
+      }
+
+      auth.logOut();
+      toast(t('error.login.unknown')); // общее сообщение
+    } finally {
+      formik.setSubmitting(false); // сбрасываем состояние отправки в любом случае
+    }
+  },
+});
 
   return (
     <div className="container">
