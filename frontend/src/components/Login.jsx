@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import { Button, Card, Col, Form, Row } from 'react-bootstrap'
-import { useLocation, useNavigate } from 'react-router-dom'
+// import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify';
 
@@ -14,15 +14,15 @@ const LoginPage = () => {
   const auth = useAuth()
   const [authFailed, setAuthFailed] = useState(false)
   const inputRef = useRef()
-  const location = useLocation()
-  const navigate = useNavigate()
+  // const location = useLocation()
+  // const navigate = useNavigate()
 
-  const redirectPath = location.state?.from?.pathname ?? '/'
+  // const redirectPath = location.state?.from?.pathname ?? '/'
 
   useEffect(() => {
     inputRef.current.focus()
   }, [])
-/*
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -34,8 +34,8 @@ const LoginPage = () => {
       try {
         const res = await axios.post(routes.loginPath(), values)
         localStorage.setItem('userId', JSON.stringify(res.data))
-        auth.logIn()
-        navigate(redirectPath, { replace: true })
+        auth.logIn(res)
+        // navigate(redirectPath, { replace: true })
       }
       catch (err) {
         formik.setSubmitting(false)
@@ -56,54 +56,6 @@ const LoginPage = () => {
       }
     },
   })
-*/
-
-const formik = useFormik({
-  initialValues: {
-    username: '',
-    password: '',
-  },
-  onSubmit: async (values) => {
-    setAuthFailed(false);
-    formik.setSubmitting(true);
-
-    try {
-      const res = await axios.post(routes.loginPath(), values);
-
-      // Дополнительная проверка данных
-      if (!res.data || typeof res.data.userId === 'undefined') {
-        throw new Error('Некорректный ответ сервера');
-      }
-
-      localStorage.setItem('userId', JSON.stringify(res.data.userId));
-      auth.logIn();
-      navigate(redirectPath, { replace: true });
-    } catch (err) {
-      if (err.isAxiosError && err.response) {
-        const { status, statusText } = err.response;
-
-        if (status === 401) {
-          setAuthFailed(true);
-          toast(t('error.login.unauthorized')); // понятное сообщение
-          if (inputRef.current) inputRef.current.focus();
-          return;
-        }
-
-        if (status >= 500) {
-          setAuthFailed(true);
-          toast(t('error.login.server_error'));
-          if (inputRef.current) inputRef.current.focus();
-          return;
-        }
-      }
-
-      auth.logOut();
-      toast(t('error.login.unknown')); // общее сообщение
-    } finally {
-      formik.setSubmitting(false); // сбрасываем состояние отправки в любом случае
-    }
-  },
-});
 
   return (
     <div className="container">

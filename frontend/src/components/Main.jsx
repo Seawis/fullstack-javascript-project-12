@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { actions as channelsActions } from '../slices/channelsSlice.js';
 import { actions as messagesActions } from '../slices/messagesSlice.js';
@@ -11,14 +11,14 @@ import ChannelList from '../chats/ChannelList.jsx';
 import MessagesList from '../chats/MessagesList.jsx';
 import fetched from '../fetch/fetched.js';
 import Modal from './Modal.jsx';
-// import useAuth from '../hooks/index.jsx'
+import useAuth from '../hooks/index.jsx'
 import { erMessage } from '../fetch/fetched.js';
 
 const MainPage = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-  // const auth = useAuth()
+  const navigate = useNavigate()
+  const auth = useAuth()
   
   useEffect(() => {
     /*
@@ -53,8 +53,17 @@ const MainPage = () => {
     }
 
     fetchContent()
-  }, [])
+  }, [dispatch, auth])
   
+  useEffect(() => {
+    console.log('STORAGE!!!!', localStorage);
+    if (!localStorage.getItem('userInfo')) {
+      navigate('/login');
+    } else {
+      navigate('/');
+    }
+  }, [navigate]);
+
   return (
     <Container fluid className="alert alert-success d-flex flex-column" role="alert" style={{ height: '760px' }}>
       <Row className="g-0 h-100">
