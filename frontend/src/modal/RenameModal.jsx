@@ -34,14 +34,16 @@ const RenameModal = () => {
     channel: channelSchema(channelNames, t),
   }
   
+  const userId = JSON.parse(localStorage.getItem('userId'))
+  
   const current = {
-    message: (newName) => fetched.editMessage({ body: newName }, data.id)
+    message: (newName) => fetched.editMessage({ body: newName }, data.id, userId)
       .then((response) => { // Данные передаются в формате: { id, changes }
         const id = response.data.id
         const changes = { body: response.data.body }
         dispatch(messagesActions.editMessage({ id, changes }))
       }),
-    channel: (newName) => fetched.editChannel({ name: newName }, data.id)
+    channel: (newName) => fetched.editChannel({ name: newName }, data.id, userId)
       .then(response => response.data),
   }
   

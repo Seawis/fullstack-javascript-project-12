@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,7 +23,10 @@ import TestRollbar from './components/TestRollbar.jsx';
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const logIn = () => setLoggedIn(true)
+  const logIn = (res) => {
+    localStorage.setItem('userId', JSON.stringify(res))
+    setLoggedIn(true)
+  }
   const logOut = () => {
     localStorage.removeItem('userId')
     setLoggedIn(false)
@@ -74,12 +76,12 @@ const AuthButton = () => {
   const { t } = useTranslation()
   const auth = useAuth()
   const location = useLocation()
-  const name = useSelector(state => state.authReducer.username)
+  const userId = JSON.parse(localStorage.getItem('userId'))
 
   return (
     auth.loggedIn
       ? <>
-          <div className="align-items-center d-flex px-3">{name}</div>
+          <div className="align-items-center d-flex px-3">{userId.username}</div>
           <Button variant="outline-secondary" onClick={auth.logOut}>{t('logout')}</Button>
         </>
       : <Button as={Link} to="/signup" state={{ from: location }}>{t('register')}</Button>

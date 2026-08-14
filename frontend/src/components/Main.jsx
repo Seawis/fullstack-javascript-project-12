@@ -2,11 +2,9 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { actions as channelsActions } from '../slices/channelsSlice.js';
 import { actions as messagesActions } from '../slices/messagesSlice.js';
-import { setCredentials } from '../slices/authSlice.js';
 import ChannelList from '../chats/ChannelList.jsx';
 import MessagesList from '../chats/MessagesList.jsx';
 import fetched from '../fetch/fetched.js';
@@ -17,53 +15,37 @@ import { erMessage } from '../fetch/fetched.js';
 const MainPage = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const auth = useAuth()
+
+  const userId = JSON.parse(localStorage.getItem('userId'))
   
   useEffect(() => {
     /*
-    const userId = JSON.parse(localStorage.getItem('userId'))
-    dispatch(setCredentials(userId))
-
     fetched.getChannels()
       .then(channels => dispatch(channelsActions.setChannels(channels.data)))
       .then(() => fetched.getMessages())
       .then(messages => dispatch(messagesActions.setMessages(messages.data)))
       .catch((error) => {
         erMessage(error, t)
-          auth.logOut
-          navigate('/login')
+        auth.logOut()
       })
     */
     const fetchContent = async () => {
-      const userId = JSON.parse(localStorage.getItem('userId'))
-      dispatch(setCredentials(userId))
-
       try {
-        const channels = await fetched.getChannels()
-        const messages = await fetched.getMessages()
+        const channels = await fetched.getChannels(userId)
+        const messages = await fetched.getMessages(userId)
 
         dispatch(channelsActions.setChannels(channels.data))
         dispatch(messagesActions.setMessages(messages.data))
       } catch (error) {
         erMessage(error, t)
-        // auth.logOut
-        // navigate('/login')
+        auth.logOut()
       }
     }
 
     fetchContent()
-  }, [dispatch, auth])
+  }, [])
   
-  useEffect(() => {
-    console.log('STORAGE!!!!', localStorage);
-    if (!localStorage.getItem('userInfo')) {
-      navigate('/login');
-    } else {
-      navigate('/');
-    }
-  }, [navigate]);
-
   return (
     <Container fluid className="alert alert-success d-flex flex-column" role="alert" style={{ height: '760px' }}>
       <Row className="g-0 h-100">

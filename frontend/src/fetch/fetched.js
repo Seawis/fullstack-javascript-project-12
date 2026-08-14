@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
-
 import axios from 'axios'
+
 import routes from './routes.js'
 
 const {
@@ -10,15 +10,11 @@ const {
   messagePath,
 } = routes
 
-const userId = JSON.parse(localStorage.getItem('userId'))
-
-const getAuthHeader = userId && userId.token
-  ? { Authorization: `Bearer ${userId.token}` }
-  : {}
-
-const params = {
-  headers: getAuthHeader,
-}
+const params = (userId) => ({
+  headers: userId && userId.token
+    ? { Authorization: `Bearer ${userId.token}` }
+    : {},
+})
 
 const erMessage = (error, t) => {
   if (error.response) {
@@ -35,16 +31,15 @@ const erMessage = (error, t) => {
 }
 
 const fetched = {
-  getChannels: () => axios.get(channelsPath(), params),
-  getMessages: () => axios.get(messagesPath(), params),
-  addChannel: (name) => axios.post(channelsPath(), { name }, params),
-  addMessage: (message) => axios.post(messagesPath(), message, params),
-  removeChannel: (id) => axios.delete(channelPath(id), params),
-  removeMessage: (id) => axios.delete(messagePath(id), params),
-  editChannel: (channel, id) => axios.patch(channelPath(id), channel, params),
-  editMessage: (message, id) => axios.patch(messagePath(id), message, params),
+  getChannels: (userId) => axios.get(channelsPath(), params(userId)),
+  getMessages: (userId) => axios.get(messagesPath(), params(userId)),
+  addChannel: (name, userId) => axios.post(channelsPath(), { name }, params(userId)),
+  addMessage: (message, userId) => axios.post(messagesPath(), message, params(userId)),
+  removeChannel: (id, userId) => axios.delete(channelPath(id), params(userId)),
+  removeMessage: (id, userId) => axios.delete(messagePath(id), params(userId)),
+  editChannel: (channel, id, userId) => axios.patch(channelPath(id), channel, params(userId)),
+  editMessage: (message, id, userId) => axios.patch(messagePath(id), message, params(userId)),
 }
-
 
 export {erMessage}
 export default fetched

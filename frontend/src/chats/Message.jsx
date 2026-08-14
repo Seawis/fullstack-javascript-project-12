@@ -1,5 +1,5 @@
 import { Card, Dropdown, ButtonGroup } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
@@ -9,7 +9,7 @@ const RenderMessage = ({ message }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   
-  const currentUser = useSelector(state => state.authReducer.username)
+  const userId = JSON.parse(localStorage.getItem('userId'))
 
   const handleModal = (modalType) => () => {
     dispatch(modalActions.setShow({
@@ -19,7 +19,7 @@ const RenderMessage = ({ message }) => {
     }))
   }
 
-  return currentUser === username
+  return userId.username === username
     ? (
         <Dropdown as={ButtonGroup} className="align-self-end">
           <Card className="border-0 bg-primary text-white rounded-end-0">
@@ -52,15 +52,3 @@ const RenderMessage = ({ message }) => {
 }
 
 export default RenderMessage
-  /*
-  <Card
-          className="border-0 shadow-sm align-self-end bg-primary text-white"
-          style={{ maxWidth: '75%' }}
-          onClick={handleModal}
-        >
-          <Card.Body className="p-2 px-3">
-            <div>{body}</div>
-            <small className="text-white-50 d-block text-end">{timestamp}</small>
-          </Card.Body>
-        </Card>
-  */

@@ -38,7 +38,8 @@ const AddChannelModal = () => {
       formik.setSubmitting(true)
       const { newName } = values
       try {
-        const newChannel = await fetched.addChannel(filtered(newName))
+        const userId = JSON.parse(localStorage.getItem('userId'))
+        const newChannel = await fetched.addChannel(filtered(newName), userId)
         dispatch(channelsActions.setActiveId(newChannel.data.id))
         handleClose()
       }

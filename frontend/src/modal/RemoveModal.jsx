@@ -17,11 +17,13 @@ const DeleteModal = () => {
   const handleClose = () => {
     dispatch(modalActions.setClose())
   }
-  
+
+  const userId = JSON.parse(localStorage.getItem('userId'))
+
   const current = {
-    message: (id) => fetched.removeMessage(id)
+    message: (id) => fetched.removeMessage(id, userId)
       .then(resp => dispatch(messagesActions.removeMessage(resp.data.id))),
-    channel: (id) => fetched.removeChannel(id)
+    channel: (id) => fetched.removeChannel(id, userId)
       .then(response => response.data.id),
   }
 

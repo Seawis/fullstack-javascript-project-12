@@ -12,7 +12,7 @@ const AddMessage = () => {
 
   const [text, setText] = useState('')
   
-  const currentUser = useSelector(state => state.authReducer.username)
+  const userId = JSON.parse(localStorage.getItem('userId'))
   const channelId = useSelector(state => state.channelReducer.activeId)
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const AddMessage = () => {
     const newMessage = {
       body: filtered(text),
       channelId: channelId,
-      username: currentUser,
+      username: userId.username,
       timestamp: new Date().toLocaleString(),
     }
 
-    fetched.addMessage(newMessage)
+    fetched.addMessage(newMessage, userId)
       .then(() => setText(''))
       .catch((err) => erMessage(err, t))
   }

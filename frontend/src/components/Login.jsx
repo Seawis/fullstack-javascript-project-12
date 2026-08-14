@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import { Button, Card, Col, Form, Row } from 'react-bootstrap'
-// import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify';
 
@@ -14,10 +14,10 @@ const LoginPage = () => {
   const auth = useAuth()
   const [authFailed, setAuthFailed] = useState(false)
   const inputRef = useRef()
-  // const location = useLocation()
-  // const navigate = useNavigate()
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  // const redirectPath = location.state?.from?.pathname ?? '/'
+  const redirectPath = location.state?.from?.pathname ?? '/'
 
   useEffect(() => {
     inputRef.current.focus()
@@ -33,9 +33,8 @@ const LoginPage = () => {
 
       try {
         const res = await axios.post(routes.loginPath(), values)
-        localStorage.setItem('userId', JSON.stringify(res.data))
-        auth.logIn(res)
-        // navigate(redirectPath, { replace: true })
+        auth.logIn(res.data)
+        navigate(redirectPath, { replace: true })
       }
       catch (err) {
         formik.setSubmitting(false)

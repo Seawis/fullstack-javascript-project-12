@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useRef } from 'react'
 import { useFormik } from 'formik'
 import { Button, Card, Col, Form, Row, Spinner } from 'react-bootstrap'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify';
 
@@ -14,8 +14,8 @@ const SignupPage = () => {
   const { t } = useTranslation()
   const auth = useAuth()
 
-  // const navigate = useNavigate()
-  // const redirectPath = '/'
+  const navigate = useNavigate()
+  const redirectPath = '/'
   const inputRef = useRef()
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const SignupPage = () => {
 
       try {
         const res = await axios.post(routes.signupPath(), { username, password })
-        localStorage.setItem('userId', JSON.stringify(res.data))
+        // localStorage.setItem('userId', JSON.stringify(res.data))
         auth.logIn(res)
-        // navigate(redirectPath, { replace: true })
+        navigate(redirectPath, { replace: true })
       }
       catch (err) {
         formik.setSubmitting(false)
