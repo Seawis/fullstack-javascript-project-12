@@ -42,7 +42,7 @@ export default {
         network: 'Network error',
         err: 'Error',
         axios: 'Download error',
-        alreadyExists: 'Already exists',
+        alreadyExists: 'User already exists',
         server: 'Server error',
       },
       404: {

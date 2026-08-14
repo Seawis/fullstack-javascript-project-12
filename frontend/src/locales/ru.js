@@ -42,7 +42,7 @@ export default {
         network: 'Ошибка сети',
         err: 'Ошибка',
         axios: 'Ошибка загрузки',
-        alreadyExists: 'Уже существует',
+        alreadyExists: 'Такой пользователь уже существует',
         server: 'Ошибка сервера',
       },
       404: {
