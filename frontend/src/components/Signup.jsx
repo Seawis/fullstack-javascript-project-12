@@ -36,7 +36,8 @@ const SignupPage = () => {
       try {
         const res = await axios.post(routes.signupPath(), { username, password })
         // localStorage.setItem('userId', JSON.stringify(res.data))
-        auth.logIn(res)
+        console.log(res)
+        auth.logIn(res.data)
         navigate(redirectPath, { replace: true })
       }
       catch (err) {
