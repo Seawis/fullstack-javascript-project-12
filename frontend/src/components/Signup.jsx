@@ -71,11 +71,11 @@ const SignupPage = () => {
               <Form onSubmit={formik.handleSubmit}>
                 <fieldset>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="username">{t('login.username')}</Form.Label>
+                    <Form.Label htmlFor="username">{t('singup.username')}</Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.username}
-                      placeholder={t('login.username')}
+                      placeholder={t('singup.username')}
                       name="username"
                       id="username"
                       autoComplete="username"

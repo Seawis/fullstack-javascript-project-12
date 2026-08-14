@@ -27,6 +27,7 @@ export default {
     singup: {
       welcome: 'Добавить нового пользователя в Slack Chat',
       singup: 'Зарегистрироваться',
+      username: 'Имя пользователя',
       passConfirm: 'Подтвердите пароль',
     },
 
