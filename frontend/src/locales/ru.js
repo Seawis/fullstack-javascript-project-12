@@ -10,7 +10,7 @@ export default {
     channels: 'Каналы',
     createChannel: 'Создать канал',
     message: 'Сообшение',
-    writeMessage: 'Напишите сообщение...',
+    writeMessage: 'Введите сообщение...',
     send: 'Отправить',
     rename: 'Переименовать',
     del: 'Удалить',

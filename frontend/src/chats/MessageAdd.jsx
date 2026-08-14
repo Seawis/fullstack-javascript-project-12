@@ -43,7 +43,7 @@ const AddMessage = () => {
           <Form.Control
             ref={inputRef}
             placeholder={t('writeMessage')}
-            aria-label="message"
+            aria-label="Новое сообщение"
             value={text}
             onChange={handleMessage}
           />
