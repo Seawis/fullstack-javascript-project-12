@@ -27,6 +27,7 @@ const MessagesList = () => {
 
       <div className="flex-grow-1 p-3 overflow-auto" style={{ maxHeight: '580px'}}>
         <div className="d-flex flex-column gap-3">
+          hello
           {messages && messages.map(message => (
             <RenderMessage key={message.id} message={message} />
           ))}
