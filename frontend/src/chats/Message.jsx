@@ -24,7 +24,7 @@ const RenderMessage = ({ message }) => {
         <Dropdown as={ButtonGroup} className="align-self-end">
           <Card className="border-0 bg-primary text-white rounded-end-0">
             <Card.Body className="p-2 px-3">
-              <div>{body}</div>
+              {body}
               <small className="text-white-50 d-block text-end">{timestamp}</small>
             </Card.Body>
           </Card>
