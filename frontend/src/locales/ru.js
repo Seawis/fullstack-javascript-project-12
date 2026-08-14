@@ -18,7 +18,7 @@ export default {
     login: {
       welcome: 'Добро пожаловать в Slack Chat!',
       singIn: 'Войти',
-      username: 'Имя пользователя',
+      username: 'Ваш ник',
       password: 'Пароль',
       invalidLogin: 'Неверные имя пользователя или пароль',
       submit: 'Подтвердить',
