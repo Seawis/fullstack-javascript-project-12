@@ -119,7 +119,7 @@ const SignupPage = () => {
                     <Form.Control.Feedback type="invalid">{formik.errors.confirmPassword}</Form.Control.Feedback>
                   </Form.Group>
                   <Button
-                    disabled={formik.isSubmitting || !formik.isValid}
+                    /* disabled={formik.isSubmitting || !formik.isValid} */
                     type="submit"
                     variant="primary"
                     className="w-100"
@@ -135,7 +135,7 @@ const SignupPage = () => {
                       : t('singup.singup')}
                   </Button>
                 </fieldset>
-                {/*<p className="text-center text-danger my-2">{error}</p>*/}
+                {/* <p className="text-center text-danger my-2">{error}</p> */}
               </Form>
             </Card.Body>
           </Card>
