@@ -22,6 +22,7 @@ const RenderMessage = ({ message }) => {
   return userId.username === username
     ? (
         <Dropdown as={ButtonGroup} className="align-self-end">
+          {body}
           <Card className="border-0 bg-primary text-white rounded-end-0">
             <Card.Body className="p-2 px-3">
               {body}
