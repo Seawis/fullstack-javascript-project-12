@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client'
 import store from './slices/index';
 import './i18n';
 import socketIo from './fetch/socket.js';
-import Main from './main.jsx';
+import Main from './init.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
